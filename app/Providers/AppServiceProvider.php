@@ -11,7 +11,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\URL;
 class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
@@ -24,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        //
+        if (! app()->isLocal()) {
+            URL::forceScheme('https');
+        }
     }
 }
