@@ -23,12 +23,7 @@ class AuthenticatedSessionController extends Controller
 
     public function store(LoginRequest $request): RedirectResponse
     {
-        dd([
-    'database' => config('database.connections.mysql.database'),
-    'host' => config('database.connections.mysql.host'),
-    'email_input' => $request->email,
-    'user_found' => \App\Models\User::where('email', $request->email)->first(),
-]);
+        
         $request->authenticate();
 
         $request->session()->regenerate();
